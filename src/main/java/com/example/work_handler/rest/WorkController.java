@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "http://localhost:3000")
 public class WorkController {
 
     @Autowired
@@ -16,10 +17,18 @@ public class WorkController {
     @Autowired
     private EmailService emailService;
 
-    @PostMapping
+    @GetMapping("/get-work")
+    public WorkData getData() {
+        WorkData savedWorkData = new WorkData();
+        System.out.println("work"+ savedWorkData);
+        return savedWorkData;
+    }
+
+    @PostMapping("/save-work")
     public WorkData saveUserData(@RequestBody WorkData workData) {
-        WorkData savedData = workDataRepository.save(workData);
-        emailService.sendEmail(savedData);
-        return savedData;
+        System.out.println("work"+ workData.toString());
+        WorkData savedWorkData = workDataRepository.save(workData);
+        emailService.sendEmail(savedWorkData);
+        return savedWorkData;
     }
 }
