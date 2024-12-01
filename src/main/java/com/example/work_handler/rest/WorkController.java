@@ -28,7 +28,7 @@ public class WorkController {
     public WorkData saveUserData(@RequestBody WorkData workData) {
         System.out.println("work"+ workData.toString());
         WorkData savedWorkData = workDataRepository.save(workData);
-//        emailService.sendEmail(savedWorkData);
+        emailService.sendEmail(savedWorkData);
         return savedWorkData;
     }
 }

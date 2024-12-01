@@ -17,7 +17,7 @@ public class EmailService {
         message.setTo(workData.getDynamicFields().get(0).getValue());
         message.setSubject("New User Data Submission");
         message.setText("Name: " + workData.getTitle() + "\nMessage: " + workData.getDescription());
-
-        mailSender.send(message);
+        System.out.println( "email message:"+ message);
+//        mailSender.send(message);
     }
 }
