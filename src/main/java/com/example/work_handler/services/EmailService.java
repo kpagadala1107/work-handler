@@ -6,8 +6,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
-
 @Service
 public class EmailService {
 
@@ -16,9 +14,9 @@ public class EmailService {
 
     public void sendEmail(WorkData workData) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(workData.getEmail());
+        message.setTo(workData.getDynamicFields().get(0).getValue());
         message.setSubject("New User Data Submission");
-        message.setText("Name: " + workData.getTitle() + "\nMessage: " + workData.getJobDescription());
+        message.setText("Name: " + workData.getTitle() + "\nMessage: " + workData.getDescription());
 
         mailSender.send(message);
     }

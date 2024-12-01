@@ -1,26 +1,28 @@
 package com.example.work_handler.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
-@Entity
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
+
+@Document(collection = "job_posts")
 public class WorkData {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private String title;
     private String company;
-    private String jobDescription;
-    private String email;
+    private String description;
+    private String people;
 
-    public Long getId() {
+    private List<Email> dynamicFields;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -40,20 +42,39 @@ public class WorkData {
         this.company = company;
     }
 
-    public String getJobDescription() {
-        return jobDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setJobDescription(String jobDescription) {
-        this.jobDescription = jobDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPeople() {
+        return people;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPeople(String people) {
+        this.people = people;
     }
 
+    public List<Email> getDynamicFields() {
+        return dynamicFields;
+    }
+
+    public void setDynamicFields(List<Email> dynamicFields) {
+        this.dynamicFields = dynamicFields;
+    }
+
+    @Override
+    public String toString() {
+        return "WorkData{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", company='" + company + '\'' +
+                ", description='" + description + '\'' +
+                ", people='" + people + '\'' +
+                ", dynamicFields=" + dynamicFields +
+                '}';
+    }
 }

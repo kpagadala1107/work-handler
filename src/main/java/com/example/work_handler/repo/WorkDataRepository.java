@@ -1,7 +1,7 @@
 package com.example.work_handler.repo;
 
 import com.example.work_handler.model.WorkData;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface WorkDataRepository extends JpaRepository<WorkData, Long> {
+public interface WorkDataRepository extends MongoRepository<WorkData, String> {
 }
